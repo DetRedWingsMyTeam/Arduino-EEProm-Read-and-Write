@@ -20,14 +20,13 @@ void setup() {
  Serial.begin(57600);
    
   while (!Serial) {
-      // will pause Zero, Leonardo, etc until serial console opens
+      // will pause until serial console opens
       delay(1);}
 
    CalFactor = 0.00448;
     BattV = 21.287;
 
     //float to string to float test - 
-    
     CalFactorString=String(CalFactor, 5); 
     RetrvdCalFactor = CalFactorString.toFloat();
     Serial.print("CalFactorString:");
@@ -35,7 +34,6 @@ void setup() {
     Serial.print("  RetrvdCalFactor:");
     Serial.println(RetrvdCalFactor,5);
 
-    
   //to do the get method--->EEPROM.get(address, data)
   
   // get 6 float values in a for loop
@@ -64,8 +62,6 @@ void setup() {
   //write cal factor for A/D 1 
     Serial.print("Write A/D 1 Cal :");
     Serial.print(CalFactor, 5);
-    //Serial.print(" adj to fit:");
-    //ePutValue=(CalFactor * 1000); //adj to fit in eeprom
     ePutValue=CalFactor;
     delay(500);              //pause at least 3.3ms to write data.
     //One simple call for put, with the address first and the object second.
@@ -94,7 +90,6 @@ void setup() {
     Serial.print(" value=");
     EEPROM.get(i * sizeof(eGetValue), eGetValue);
     Serial.println(eGetValue,5);
-    
   }
 } //end setup()
 
